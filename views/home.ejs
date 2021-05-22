@@ -15,23 +15,47 @@
     <br>
     <div class="container">
         <div class="predmeti">
+            <h5>Predmeti</h5>
             <ol>
                 <% for (let predmet of predmeti ) { %>
                     <li>
-                        <%= predmet.nazpredmet %> 
+                        <a href="/<%= predmet.sifpredmet %>"><%= predmet.nazpredmet %> (<%= predmet.sifpredmet %>)</a>
                     </li>
                 <% } %>
             </ol>
         </div>
-        <div></div>
-        <div class="studenti">
-            <ol>
-                <% for (let student of studenti) { %>
-                    <li>
-                        <%= student.imestudent %>
-                    </li>
-                <% } %>
-            </ol>
+        <div class="middle">
+            <% if (predStud.length > 0) { %>
+                <h5>Student na odabranom predmetu:</h5>
+                <ul>
+                    <% for (let stud of predStud) { %>
+                        <li>
+                            <a href="/<%= sp %>/<%= stud.jmbag %>"><%= stud.imestudent  %> <%= stud.prezimestudent %></a>
+                        </li>
+                    <% } %>
+                </ul>
+            <% } %>
+            <% if (studOcj.length > 0) { %>
+                <h5>Student <%= studOcj[0].imestudent %> <%= studOcj[0].prezimestudent %> i njegove ocjene:</h5>
+                <ul>
+                    <% for (let stud of studOcj) { %>
+                        <% if (stud.sifpredmet == sp) { %>
+                            <li>
+                                Predmet: <%= stud.nazpredmet %>, ocjena: 
+                                    <span class="badge rounded-pill bg-primary"><%= stud.ocjena %></span>
+                            </li>
+                        <% } %>
+                    <% } %>
+                    <% for (let stud of studOcj) { %>
+                        <% if (stud.sifpredmet != sp) { %>
+                            <li>
+                                Predmet: <%= stud.nazpredmet %>, ocjena: 
+                                    <span class="badge rounded-pill bg-secondary"><%= stud.ocjena %></span>
+                            </li>
+                        <% } %>
+                    <% } %>
+                </ul>
+            <% } %>
         </div>
     </div>
 </body>
