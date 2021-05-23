@@ -7,21 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-   <form method="POST" action="/add">
+    <% if(errors.length > 0) { %>
+        <ul>
+        <% for (let error of errors) { %>
+           <li>Error: <%= error.msg %></li>
+        <% } %>
+        </ul>
+    <% } %>
+   <form action="/add" method="POST" >
         <fieldset>
         <legend>student</legend>
         <div>
-            <label for="firstname">First name: </label><input type="text" name="firstname" id="firstname" required>
+            <label for="firstname">First name: </label><input type="text" name="firstname" id="firstname" required minlength="2">
         </div>
         <div>
-            <label for="lastname">Last name: </label><input type="text" name="lastname" id="lastname" required>
+            <label for="lastname">Last name: </label><input type="text" name="lastname" id="lastname"      required minlength="3">
         </div>
+        <div><label for="OIB">OIB: </label> <input type="text" name="OIB" id="OIB" required></div>
         <div>
-            <label for="OIB">OIB: </label> <input type="text" name="OIB" id="OIB" required>
-        </div>
-        <div>
-            <label for="JMBAG">JMBAG: </label><input type="text" name="JMBAG" id="JMBAG" required>
-        </div>
+            <label for="JMBAG">JMBAG: </label><input type="text" name="JMBAG" id="JMBAG" required minlength="10" maxlength="10"></div>
        <div>
             <label for="pbrrod">Postanski broj rodenja: </label><input type="text" name="pbrstan" id="pbrstan" required>
        </div>
